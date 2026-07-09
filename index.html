@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — Expense & Budget Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="receipt">
+
+  <!-- Header -->
+  <header class="receipt__header">
+    <div class="header__top">
+      <h1>Ledger</h1>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-toggle__icon">☾</span>
+      </button>
+    </div>
+    <p class="header__subtitle">expense &amp; budget visualizer</p>
+
+    <div class="balance-block">
+      <span class="balance-block__label">Total Balance</span>
+      <span class="balance-block__amount" id="totalBalance">Rp 0</span>
+    </div>
+  </header>
+
+  <div class="perforation" aria-hidden="true"></div>
+
+  <!-- Input form -->
+  <section class="section" aria-labelledby="formTitle">
+    <h2 id="formTitle" class="section__title"><span class="section__tick">01</span> New Entry</h2>
+
+    <form id="expenseForm" class="form" novalidate>
+      <div class="field">
+        <label for="itemName">Item name</label>
+        <input type="text" id="itemName" name="itemName" placeholder="e.g. Iced coffee" autocomplete="off">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="amount">Amount (Rp)</label>
+          <input type="number" id="amount" name="amount" placeholder="0" min="0" step="1" inputmode="numeric">
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field field--custom-category" id="customCategoryField" hidden>
+        <label for="customCategory">New category name</label>
+        <input type="text" id="customCategory" name="customCategory" placeholder="e.g. Health" autocomplete="off">
+      </div>
+
+      <button type="button" id="addCategoryToggle" class="link-btn">+ Add custom category</button>
+
+      <p class="form__error" id="formError" role="alert" aria-live="polite"></p>
+
+      <button type="submit" class="btn btn--primary">Add transaction</button>
+    </form>
+  </section>
+
+  <div class="perforation" aria-hidden="true"></div>
+
+  <!-- Transaction list -->
+  <section class="section" aria-labelledby="listTitle">
+    <div class="section__header-row">
+      <h2 id="listTitle" class="section__title"><span class="section__tick">02</span> Transactions</h2>
+      <select id="sortSelect" class="sort-select" aria-label="Sort transactions">
+        <option value="date">Newest first</option>
+        <option value="amount-desc">Amount: high to low</option>
+        <option value="amount-asc">Amount: low to high</option>
+        <option value="category">Category (A–Z)</option>
+      </select>
+    </div>
+
+    <ul id="transactionList" class="tx-list"></ul>
+    <p id="emptyState" class="empty-state">No transactions yet. Add your first entry above.</p>
+  </section>
+
+  <div class="perforation" aria-hidden="true"></div>
+
+  <!-- Chart -->
+  <section class="section" aria-labelledby="chartTitle">
+    <h2 id="chartTitle" class="section__title"><span class="section__tick">03</span> Spending by Category</h2>
+    <div class="chart-card">
+      <canvas id="categoryChart" width="280" height="280"></canvas>
+      <p id="chartEmptyState" class="empty-state">Your chart will appear here once you add a transaction.</p>
+    </div>
+    <ul id="chartLegend" class="chart-legend"></ul>
+  </section>
+
+  <footer class="receipt__footer">
+    <p>— end of ledger —</p>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
