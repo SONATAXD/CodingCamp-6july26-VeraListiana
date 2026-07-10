@@ -40,14 +40,6 @@ python3 -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
-## Deploying with GitHub Pages
-
-1. Push this project to a GitHub repository (rename the folder to match your course's naming format before pushing, e.g. `CodingCamp-6July26-yourname`).
-2. On GitHub, go to **Settings → Pages**.
-3. Under **Source**, choose **Deploy from a branch**, pick `main` and `/ (root)`, then **Save**.
-4. Wait a minute, then your site will be live at:
-   `https://<your-username>.github.io/<repo-name>/`
-
 ## Tech notes
 
 - Chart.js is loaded from a CDN (`cdn.jsdelivr.net`) — an internet connection is needed the first time the page loads.
